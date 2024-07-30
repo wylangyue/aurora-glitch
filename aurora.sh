@@ -8,7 +8,7 @@ get_current_version() {
 
 get_latest_version() {
     # Get latest release version number
-    RELEASE_LATEST=$(curl -s https://api.github.com/repos/aurora-develop/aurora/releases/latest | jq -r '.tag_name')
+    RELEASE_LATEST=$(curl -s https://api.github.com/repos/aurora-develop/duck2api/releases/latest | jq -r '.tag_name')
     if [[ -z "$RELEASE_LATEST" ]]; then
         echo "error: Failed to get the latest release version, please check your network."
         exit 1
@@ -16,12 +16,12 @@ get_latest_version() {
 }
 
 download_web() {
-    DOWNLOAD_LINK="https://github.com/aurora-develop/aurora/releases/latest/download/aurora-linux-amd64.tar.gz"
+    DOWNLOAD_LINK="https://github.com/aurora-develop/duck2api/releases/latest/download/duck2api-linux-amd64.tar.gz"
     if ! wget -qO "$ZIP_FILE" "$DOWNLOAD_LINK"; then
         echo 'error: Download failed! Please check your network or try again.'
         return 1
     fi
-    curl -s https://api.github.com/repos/aurora-develop/aurora/releases/latest | jq -r '.tag_name' > VERSION
+    curl -s https://api.github.com/repos/aurora-develop/duck2api/releases/latest | jq -r '.tag_name' > VERSION
     return 0
 }
 
